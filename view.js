@@ -72,3 +72,9 @@ $('.permbutton').click( function( e ) {
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $('#html-loc').find('*').uniqueId() 
+
+
+// -- Code that runs after everything is loaded
+$(".permbutton").append("Open Permissions");
+$("#perm_add_user_button").html("Add New User");
+$("#perm_remove_user").html("Remove User");
