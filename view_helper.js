@@ -411,7 +411,7 @@ function define_file_permission_groups_list(id_prefix){
                             <td id="${id_prefix}_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${ace_type}</td>
                             <td id="${id_prefix}_${file_obj.filename}__${u}_${ace_type}_${perm}_name">${u}</td>
                             <td id="${id_prefix}_${file_obj.filename}__${u}_${ace_type}_${perm}_permission">${perm}</td>
-                            <td id="${id_prefix}_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${grouped_perms[ace_type][perm].inherited?"Parent Object":"(not inherited)"}</td>
+                            <td id="${id_prefix}_${file_obj.filename}__${u}_${ace_type}_${perm}_source">${get_inheritance_source_label(file_obj, grouped_perms[ace_type][perm].inherited)}</td>
                         </tr>`)
                     }
                 }

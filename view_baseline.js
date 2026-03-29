@@ -48,7 +48,8 @@ file_permission_users.css({
 })
 
 // Make button to add a new user to the list:
-perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add...', on_user_change = function(selected_user){
+// Added for Tinkering: Change label to 'Add User/Group...'
+perm_add_user_select = define_new_user_select_field('perm_add_user', 'Add User/Group...', on_user_change = function(selected_user){
     // console.log("add...")
     let filepath = perm_dialog.attr('filepath')
     if(selected_user && (selected_user.length > 0) && (selected_user in all_users)) { // sanity check that a user is actually selected (and exists)
@@ -120,7 +121,9 @@ let are_you_sure_dialog = define_new_dialog('are_you_sure_dialog', "Are you sure
 are_you_sure_dialog.text('Do you want to remove permissions for this user?')
 
 // Make actual "remove" button:
-perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all">Remove</button>')
+// Added 'btn-danger' class to highlight destructive action for Risk Aversion users
+// Added for Tinkering: Change label to 'Remove User/Group'
+perm_remove_user_button  = $('<button id="perm_remove_user" class="ui-button ui-widget ui-corner-all btn-danger">Remove User/Group</button>')
 perm_remove_user_button.click(function(){
     // Get the current user and filename we are working with:
     let selected_username = file_permission_users.attr('selected_item')
@@ -151,6 +154,11 @@ perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
 perm_dialog.append(grouped_permissions)
+
+// Added for Tinkering/Risk Aversion: Document permission subsets
+permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write, Read & Execute.<br/>- <em>Read & Execute</em> includes Read.</div>')
+perm_dialog.append(permission_subset_expl_div)
+
 perm_dialog.append(advanced_expl_div)
 
 // --- Additional logic for reloading contents when needed: ---
@@ -245,11 +253,11 @@ function open_advanced_dialog(file_path) {
         let grouped_perms = get_grouped_permissions(file_obj, u)
         for(let ace_type in grouped_perms) {
             for(let perm in grouped_perms[ace_type]) {
-                $('#adv_perm_table').append(`<tr id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}">
+               $('#adv_perm_table').append(`<tr id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}">
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${ace_type}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_name">${u}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_permission">${perm}</td>
-                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${grouped_perms[ace_type][perm].inherited?"Parent Object":"(not inherited)"}</td>
+                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_source">${get_inheritance_source_label(file_obj, grouped_perms[ace_type][perm].inherited)}</td>
                 </tr>`)
             }
         }
@@ -353,7 +361,8 @@ $('#adv_perm_inheritance').change(function(){
     }
     else {
         // has just been turned off - pop up dialog with add/remove/cancel
-        $(`<div id="add_remove_cancel" title="Security">
+        // Added 'warning-text' class to make the warning prominent for Risk Aversion
+        $(`<div id="add_remove_cancel" title="Security" class="warning-text">
             Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
             - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
             - Click Remove to remove inherited parent permissions from this object<br/>
@@ -409,7 +418,8 @@ $('#adv_perm_replace_child_permissions').change(function(){
         // we only care when it's been checked (nothing happens on uncheck) (this should really not be a checkbox...)
         let filepath = $('#advdialog').attr('filepath')
         let file_obj = path_to_file[filepath]
-        $(`<div id="replace_perm_dialog" title="Security">
+        // Added 'warning-text' class to emphasize destructive action for Risk Aversion
+        $(`<div id="replace_perm_dialog" title="Security" class="warning-text">
             This will replace explicitly defined permissions on all descendants of this object with inheritable permissions from ${file_obj.filename}.<br/>
             Do you wish to continue?
         </div>`).dialog({
