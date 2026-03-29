@@ -95,6 +95,19 @@ function get_full_path(file_obj) {
     return path;
 }
 
+function get_inheritance_source_label(file_obj, is_inherited) {
+    if (!is_inherited) {
+        return "Directly set here";
+    }
+
+    if (file_obj.using_permission_inheritance && file_obj.parent !== null) {
+        return `Inherited from ${get_full_path(file_obj.parent)}`;
+    }
+
+    return "Inherited";
+}
+
+
 path_to_file = {}; // map of file path to file object
 parent_to_children = {}; // map of parent folder to its children (using file path to identify parent uniquely)
 root_files = []; // files and folders at the root

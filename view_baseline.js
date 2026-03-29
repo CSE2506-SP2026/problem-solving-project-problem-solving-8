@@ -245,11 +245,11 @@ function open_advanced_dialog(file_path) {
         let grouped_perms = get_grouped_permissions(file_obj, u)
         for(let ace_type in grouped_perms) {
             for(let perm in grouped_perms[ace_type]) {
-                $('#adv_perm_table').append(`<tr id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}">
+               $('#adv_perm_table').append(`<tr id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}">
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${ace_type}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_name">${u}</td>
                     <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_permission">${perm}</td>
-                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_type">${grouped_perms[ace_type][perm].inherited?"Parent Object":"(not inherited)"}</td>
+                    <td id="adv_perm_${file_obj.filename}__${u}_${ace_type}_${perm}_source">${get_inheritance_source_label(file_obj, grouped_perms[ace_type][perm].inherited)}</td>
                 </tr>`)
             }
         }
