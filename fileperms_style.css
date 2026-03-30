@@ -402,8 +402,7 @@ body, button, input, select, textarea {
 }
 .ui-accordion .ui-accordion-header:hover { background: #f0f0f0 !important; }
 .ui-accordion .ui-accordion-content {
-  border: none !important;
-  padding: 0 !important;
+  padding: 1em 4px 1em 2em !important;
   background: #fff !important;
 }
 
