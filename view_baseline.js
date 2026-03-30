@@ -161,7 +161,7 @@ inheritance_warning_div = $('<div id="permdialog_inheritance_warning" class="sec
 perm_dialog.append(inheritance_warning_div)
 
 // Added for Tinkering/Risk Aversion: Document permission subsets
-permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write, Read & Execute.<br/>- <em>Read & Execute</em> includes Read.</div>')
+permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write.<br/>- <em>Read & Execute</em> includes Read.</div>')
 perm_dialog.append(permission_subset_expl_div)
 
 perm_dialog.append(advanced_expl_div)
