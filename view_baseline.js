@@ -363,14 +363,7 @@ $('#adv_perm_inheritance').change(function(){
     }
     else {
         // has just been turned off - pop up dialog with add/remove/cancel
-<<<<<<< HEAD
-        // Added 'warning-text' class to make the warning prominent for Risk Aversion
-        $(`<div id="add_remove_cancel" title="Security" class="warning-text">
-            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
-            - Click Remove to remove inherited parent permissions from this object<br/>
-            - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
-=======
+
         $(`<div id="add_remove_cancel" title="Security">
              Turning off inheritance will stop permissions from being inherited from the parent.<br/><br/>
             <b>Add</b>: Keep current permissions as explicit.<br/>
