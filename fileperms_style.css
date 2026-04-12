@@ -222,7 +222,7 @@ body, button, input, select, textarea {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #e8e8e8;
-  border-radius: 0 0 7px 7px;  
+  border-radius: 7px;
   overflow: hidden;
   font-size: 13px;
 }
@@ -237,10 +237,7 @@ body, button, input, select, textarea {
   letter-spacing: 0.05em;
   border-bottom: 1px solid #e8e8e8;
 }
-.grouped-perm-table th:not(:first-child) {
-  text-align: center;
-  border-left: 2px solid #c0c0c0; /* ← Allow/Deny 列分隔线 */
-}
+.grouped-perm-table th:not(:first-child) { text-align: center; }
 .grouped-perm-table td {
   padding: 7px 10px;
   border-bottom: 1px solid #f2f2f2;
@@ -249,10 +246,7 @@ body, button, input, select, textarea {
 }
 .grouped-perm-table tr:last-child td { border-bottom: none; }
 .grouped-perm-table tr:hover td { background: #fafafa; }
-.grouped-perm-table td:not(:first-child) {
-  text-align: center;
-  border-left: 2px solid #e8e8e8; /* ← Allow/Deny 列分隔线 */
-}
+.grouped-perm-table td:not(:first-child) { text-align: center; }
 .grouped-perm-table input[type="checkbox"] {
   width: 15px;
   height: 15px;
@@ -350,20 +344,19 @@ body, button, input, select, textarea {
 #permission_subsets_info {
   background: #f0f5ff;
   border: 1px solid #c7d9f8;
-  border-radius: 7px 7px 0 0;  /* 下方不圆角，和表格连接 */
-  padding: 8px 11px;            /* 减少上下内边距 */
+  border-radius: 7px;
+  padding: 9px 11px;
   font-size: 11px;
   color: #444;
-  margin-top: 0;
-  margin-bottom: 0;             /* 和表格之间无间距 */
-  line-height: 1.4;             /* 减少行高 */
+  margin-top: 10px;
+  line-height: 1.6;
 }
 #permission_subsets_info strong {
   font-size: 11px;
   font-weight: 600;
   color: #333;
   display: block;
-  margin-bottom: 2px;           /* 减少标题下方间距 */
+  margin-bottom: 3px;
 }
 
 /* ── Inheritance checkboxes ── */
