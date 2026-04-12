@@ -153,15 +153,12 @@ perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
+let subset_info = $('<div id="permission_subsets_info"><strong>Permission Subsets</strong><br>Full Control includes all permissions.<br>Modify includes Write and file deletion permissions.<br>Read &amp; Execute includes Read and executing files.</div>')
+perm_dialog.append(subset_info)
 perm_dialog.append(grouped_permissions)
 
-// ADDED: Warning message shown when the object inherits permissions from a parent.
-// Hidden by default; shown/hidden dynamically in the filepath observer below.
-inheritance_warning_div = $('<div id="permdialog_inheritance_warning" class="section" style="display:none; font-size: 0.9em; color: #8a6d3b; background: #fcf8e3; padding: 8px; border: 1px solid #faebcc; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>&#9888; Inherited Permissions:</strong> Some permissions (those with a grayed out checkmark) for this object are inherited from a parent object and cannot be changed here. <br> If you have accidentally modified them, either open Advanced settings and disable permission inheritance, or open Advanced setting to see where the permission is being inherrited from, go to that object, open Advanced permissions again, and click replace all child object permissions.</div>')
-perm_dialog.append(inheritance_warning_div)
-
 // Added for Tinkering/Risk Aversion: Document permission subsets
-permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write.<br/>- <em>Read & Execute</em> includes Read.</div>')
+permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write, Read & Execute.<br/>- <em>Read & Execute</em> includes Read.</div>')
 perm_dialog.append(permission_subset_expl_div)
 
 perm_dialog.append(advanced_expl_div)
@@ -181,13 +178,6 @@ define_attribute_observer(perm_dialog, 'filepath', function(){
     //replace previous user list with the one we just generated:
     file_permission_users.empty()
     file_permission_users.append(file_user_list)
-
-    // ADDED: Show the inheritance warning if this object inherits permissions from a parent.
-    if(path_to_file[current_filepath].using_permission_inheritance) {
-        inheritance_warning_div.show()
-    } else {
-        inheritance_warning_div.hide()
-    }
 })
 
 
@@ -372,13 +362,14 @@ $('#adv_perm_inheritance').change(function(){
         perm_dialog.attr('filepath', filepath) // force reload 'permissions' dialog
     }
     else {
-        // has just been turned off - pop up dialog with add/remove/cancel
-        // Added 'warning-text' class to make the warning prominent for Risk Aversion
-        $(`<div id="add_remove_cancel" title="Security" class="warning-text">
-            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
-            - Click Remove to remove inherited parent permissions from this object<br/>
-            - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
+       
+
+        $(`<div id="add_remove_cancel" title="Security">
+             Turning off inheritance will stop permissions from being inherited from the parent.<br/><br/>
+            <b>Add</b>: Keep current permissions as explicit.<br/>
+            <b>Remove</b>: Remove inherited permissions.<br/>
+            <b>Cancel</b>: Keep current settings.<br/>
+
         </div>`).dialog({ // TODO: don't create this dialog on the fly
             modal: true,
             width: 400,
