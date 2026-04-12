@@ -359,8 +359,8 @@ body, button, input, select, textarea {
   line-height: 1.4;             /* 减少行高 */
 }
 #permission_subsets_info strong {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 650;
   color: #333;
   display: block;
   margin-bottom: 2px;           /* 减少标题下方间距 */

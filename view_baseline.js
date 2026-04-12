@@ -153,13 +153,19 @@ perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
+
+//Added: Permission subset message
 let subset_info = $('<div id="permission_subsets_info"><strong>Permission Subsets</strong><br>Full Control includes all permissions.<br>Modify includes Write and file deletion permissions.<br>Read &amp; Execute includes Read and executing files.</div>')
 perm_dialog.append(subset_info)
+
 perm_dialog.append(grouped_permissions)
 
-// Added for Tinkering/Risk Aversion: Document permission subsets
-permission_subset_expl_div = $('<div id="permdialog_subset_explanation" class="section info-text" style="font-size: 0.9em; color: #333; background: #eef; padding: 8px; border: 1px solid #bce8f1; border-radius: 4px; margin-top: 10px; margin-bottom: 10px;"><strong>Permission Subsets:</strong><br/>- <em>Full Control</em> includes all permissions.<br/>- <em>Modify</em> includes Write, Read & Execute.<br/>- <em>Read & Execute</em> includes Read.</div>')
-perm_dialog.append(permission_subset_expl_div)
+//Added: Inherited Permissions Warning
+inheritance_warning_div = $('<div id="permission_subsets_info"><strong> How to change grayed out permissions: </strong> <br> Any gray checkmarks you see are permissions that are inherited from another object. <br> In order to change these permissions, click on advanced in order to see where these permissions come from.<br> Next, click open permissions on that object and change permissions there.</div>')
+perm_dialog.append(inheritance_warning_div)
+
+
+
 
 perm_dialog.append(advanced_expl_div)
 
@@ -178,6 +184,13 @@ define_attribute_observer(perm_dialog, 'filepath', function(){
     //replace previous user list with the one we just generated:
     file_permission_users.empty()
     file_permission_users.append(file_user_list)
+
+    //Added: Shows or hides inheritance permisson warning based on if the current filepath is using permission inheritance
+    if(path_to_file[current_filepath].using_permission_inheritance) {
+        inheritance_warning_div.show()
+    } else {
+        inheritance_warning_div.hide()
+    }
 })
 
 
