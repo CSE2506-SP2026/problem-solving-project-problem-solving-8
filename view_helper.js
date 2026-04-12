@@ -208,16 +208,8 @@ function define_new_effective_permissions(id_prefix, add_info_col = false, which
 // define an element which will display *grouped* permissions for a given file and user, and allow for changing them by checking/unchecking the checkboxes.
 function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
     // Set up table and header:
-    let info_box = $(`
-        <div id="permission_subsets_info">
-            <strong>Permission Subsets</strong>
-            Modify includes Write and file deletion permissions.<br>
-            Read &amp; Execute includes Read and executing files.
-        </div>
-        `)
     let group_table = $(`
-   
-    <table id="${id_prefix}" class="ui-widget-content grouped-perm-table" width="100%">
+    <table id="${id_prefix}" class="ui-widget-content" width="100%">
         <tr id="${id_prefix}_header">
             <th id="${id_prefix}_header_p" width="99%">Permissions for <span id="${id_prefix}_header_username"></span>
             </th>
@@ -295,11 +287,8 @@ function define_grouped_permission_checkboxes(id_prefix, which_groups = null) {
         toggle_permission_group( group_table.attr('filepath'), group_table.attr('username'), $(this).attr('group'), $(this).attr('ptype'), $(this).prop('checked'))
         update_group_checkboxes()// reload checkboxes
     })
-    
+
     return group_table
-
-    
-
 }
 
 // define an element which will display *individual* permissions for a given file and user, and allow for changing them by checking/unchecking the checkboxes.

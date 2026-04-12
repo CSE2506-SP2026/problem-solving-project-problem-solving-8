@@ -153,8 +153,6 @@ perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div
 perm_dialog.append(file_permission_users)
 perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
-let subset_info = $('<div id="permission_subsets_info"><strong>Permission Subsets</strong><br>Full Control includes all permissions.<br>Modify includes Write and file deletion permissions.<br>Read &amp; Execute includes Read and executing files.</div>')
-perm_dialog.append(subset_info)
 perm_dialog.append(grouped_permissions)
 
 // ADDED: Warning message shown when the object inherits permissions from a parent.
@@ -375,20 +373,12 @@ $('#adv_perm_inheritance').change(function(){
     }
     else {
         // has just been turned off - pop up dialog with add/remove/cancel
-<<<<<<< HEAD
         // Added 'warning-text' class to make the warning prominent for Risk Aversion
         $(`<div id="add_remove_cancel" title="Security" class="warning-text">
             Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
             - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
             - Click Remove to remove inherited parent permissions from this object<br/>
             - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
-=======
-        $(`<div id="add_remove_cancel" title="Security">
-             Turning off inheritance will stop permissions from being inherited from the parent.<br/><br/>
-            <b>Add</b>: Keep current permissions as explicit.<br/>
-            <b>Remove</b>: Remove inherited permissions.<br/>
-            <b>Cancel</b>: Keep current settings.<br/>
->>>>>>> a1a55a1 (Improve UI: add Allow/Deny column borders, permission subsets info box, simplify inheritance warning)
         </div>`).dialog({ // TODO: don't create this dialog on the fly
             modal: true,
             width: 400,
