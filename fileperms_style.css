@@ -409,8 +409,7 @@ body, button, input, select, textarea {
 }
 .ui-accordion .ui-accordion-header:hover { background: #f0f0f0 !important; }
 .ui-accordion .ui-accordion-content {
-  border: none !important;
-  padding: 0 !important;
+  padding: 1em 4px 1em 2em !important;
   background: #fff !important;
 }
 
@@ -449,17 +448,8 @@ body, button, input, select, textarea {
 }
 .top-banner-button:hover { 
     background: #333;
-    position: absolute;
-    width: 99%;
-    bottom: 0px;
-    top:unset;
-    left: 0;
-    background-color: #eee;
-    z-index: 100;
-    padding: 10px 10px 10px 10px;
-    border-left: 1px orange solid;
-    border-right: 1px orange solid;
-    border-top: 1px orange solid;
+    padding: 5px 17px;
+    border: 1px orange solid;
 }
 
 .no-close .ui-dialog-titlebar-close {
