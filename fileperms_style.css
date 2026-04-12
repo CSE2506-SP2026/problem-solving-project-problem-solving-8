@@ -222,7 +222,7 @@ body, button, input, select, textarea {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #e8e8e8;
-  border-radius: 7px;
+  border-radius: 0 0 7px 7px;  
   overflow: hidden;
   font-size: 13px;
 }
@@ -237,7 +237,10 @@ body, button, input, select, textarea {
   letter-spacing: 0.05em;
   border-bottom: 1px solid #e8e8e8;
 }
-.grouped-perm-table th:not(:first-child) { text-align: center; }
+.grouped-perm-table th:not(:first-child) {
+  text-align: center;
+  border-left: 2px solid #c0c0c0; /* ← Allow/Deny 列分隔线 */
+}
 .grouped-perm-table td {
   padding: 7px 10px;
   border-bottom: 1px solid #f2f2f2;
@@ -246,7 +249,10 @@ body, button, input, select, textarea {
 }
 .grouped-perm-table tr:last-child td { border-bottom: none; }
 .grouped-perm-table tr:hover td { background: #fafafa; }
-.grouped-perm-table td:not(:first-child) { text-align: center; }
+.grouped-perm-table td:not(:first-child) {
+  text-align: center;
+  border-left: 2px solid #e8e8e8; /* ← Allow/Deny 列分隔线 */
+}
 .grouped-perm-table input[type="checkbox"] {
   width: 15px;
   height: 15px;
@@ -344,19 +350,20 @@ body, button, input, select, textarea {
 #permission_subsets_info {
   background: #f0f5ff;
   border: 1px solid #c7d9f8;
-  border-radius: 7px;
-  padding: 9px 11px;
+  border-radius: 7px 7px 0 0;  /* 下方不圆角，和表格连接 */
+  padding: 8px 11px;            /* 减少上下内边距 */
   font-size: 11px;
   color: #444;
-  margin-top: 10px;
-  line-height: 1.6;
+  margin-top: 0;
+  margin-bottom: 0;             /* 和表格之间无间距 */
+  line-height: 1.4;             /* 减少行高 */
 }
 #permission_subsets_info strong {
   font-size: 11px;
   font-weight: 600;
   color: #333;
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 2px;           /* 减少标题下方间距 */
 }
 
 /* ── Inheritance checkboxes ── */
@@ -402,7 +409,8 @@ body, button, input, select, textarea {
 }
 .ui-accordion .ui-accordion-header:hover { background: #f0f0f0 !important; }
 .ui-accordion .ui-accordion-content {
-  padding: 1em 4px 1em 2em !important;
+  border: none !important;
+  padding: 0 !important;
   background: #fff !important;
 }
 
@@ -441,8 +449,17 @@ body, button, input, select, textarea {
 }
 .top-banner-button:hover { 
     background: #333;
-    padding: 5px 17px;
-    border: 1px orange solid;
+    position: absolute;
+    width: 99%;
+    bottom: 0px;
+    top:unset;
+    left: 0;
+    background-color: #eee;
+    z-index: 100;
+    padding: 10px 10px 10px 10px;
+    border-left: 1px orange solid;
+    border-right: 1px orange solid;
+    border-top: 1px orange solid;
 }
 
 .no-close .ui-dialog-titlebar-close {
